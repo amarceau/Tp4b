@@ -7,8 +7,9 @@ import java.util.Arrays;
 
 /**
  * Classe de testes de la classe Carte
- * @version 201A21 - V1
+ *
  * @author Robert Aubé
+ * @version 201A21 - V1
  */
 public class CarteTest {
     private boolean testReussi;

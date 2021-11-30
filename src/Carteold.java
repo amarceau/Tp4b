@@ -1,10 +1,14 @@
-public class Carte {
+/*
+import java.util.Arrays;
+
+public class Carteold {
     public static final String[] COULEURS_VALIDES = {"pique", "trèfle", "carreau", "coeur"};
     public static final char[] COULEURS_CAR = {'\u2660', '\u2663', '\u2666', '\u2764'};
 
     private int valeur;
     private String couleur;
-    private char charCarte;
+
+    private int indiceCouleur;
 
     public Carte(int valeur, String couleur) {
         setValeur(valeur);
@@ -16,7 +20,7 @@ public class Carte {
     }
 
     public void setValeur(int valeur) {
-        if (Carte.valeurEstValide(valeur) == true)
+        if (valeur >= 1 && valeur <= 13)
             this.valeur = valeur;
         else
             throw new IllegalArgumentException();
@@ -27,10 +31,9 @@ public class Carte {
     }
 
     public void setCouleur(String couleur) {
-        if (Carte.couleurEstValide(couleur) == true) {
+        this.indiceCouleur = Util.trouverStr(couleur.toLowerCase(), COULEURS_VALIDES);
+        if (this.indiceCouleur >= 0)
             this.couleur = couleur;
-            this.charCarte = getCharCarte(couleur);
-        }
         else
             throw new IllegalArgumentException();
     }
@@ -48,17 +51,15 @@ public class Carte {
         else
             return false;
     }
-    private char getCharCarte(String couleur) {
-        return COULEURS_CAR[Util.trouverStr(couleur, COULEURS_VALIDES)];
+
+    public char getCharCarte() {
+        return COULEURS_CAR[this.indiceCouleur];
     }
 
     @Override
     public String toString() {
-        return (valeur + " de " + getCouleur() + " (" + charCarte + ")");
+        return (valeur + " de " + getCouleur() + " (" + getCharCarte() + ")");
     }
-
-    public static void main(String[] args) {
-
-    }
-
 }
+
+*/
