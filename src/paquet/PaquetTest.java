@@ -1,4 +1,4 @@
-//420-201 – tp4 - Jeu de carte
+package paquet;//420-201 – tp4 - Jeu de carte
 //Nom : Aubé
 //Prénom : Robert
 
@@ -24,14 +24,13 @@ public class PaquetTest {
         tester_onNAPas2CartesPareillesDansUnPaquetMelange(10);
         tester_unPaquetMelangeEstBienMelange(10);
         tester_toStringRetouneUneStrDesCartesDuPaquet();
-
     }
 
-//    /**
-//     * Vide le paquet en pigean exactement 52 cartes et
-//     * Retroune faux s'il n'y a pas 52 cartes
-//     * @return faux s'il n'y a pas 52 cartes
-//     */
+    /**
+     * Vide le paquet en pigean exactement 52 cartes et
+     * Retroune faux s'il n'y a pas 52 cartes
+     * @return faux s'il n'y a pas 52 cartes
+     */
     private boolean vider52CartesDuPaquet(Paquet paquet) {
         Carte c;
         boolean carteANull = false;
@@ -104,8 +103,7 @@ public class PaquetTest {
         Paquet pOrdononne = new Paquet(false);
 
         descriptionTest = "Votre paquet contient l'ensemble des cartes d'un paquet ordonnée";
-        //strPaquetOrdonne = paquetToString(pOrdononne);
-        strPaquetOrdonne = pOrdononne.toString();
+        strPaquetOrdonne = paquetToString(pOrdononne);
         testReussi = strPaquetOrdonne.equalsIgnoreCase(paquetOrdonneCouleurValeur) || strPaquetOrdonne.equalsIgnoreCase(paquetOrdonneValeurCouleur);
         afficherResultatDuTest();
     }

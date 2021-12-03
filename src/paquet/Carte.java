@@ -1,26 +1,37 @@
-/*
-import java.util.Arrays;
+package paquet;
 
-public class Carteold {
+import java.util.Objects;
+
+/*
+420-201 – TP4b
+Groupe : 2 – mardi & jeudi
+Nom : Marceau
+Prénom : Jérémy
+DA : 2140653
+ */
+
+public class Carte {
+
     public static final String[] COULEURS_VALIDES = {"pique", "trèfle", "carreau", "coeur"};
     public static final char[] COULEURS_CAR = {'\u2660', '\u2663', '\u2666', '\u2764'};
-
-    private int valeur;
-    private String couleur;
-
-    private int indiceCouleur;
 
     public Carte(int valeur, String couleur) {
         setValeur(valeur);
         setCouleur(couleur);
     }
 
+    private int valeur;
+    private String couleur;
+
+    private int indiceCouleur;
+
+
     public int getValeur() {
         return this.valeur;
     }
 
     public void setValeur(int valeur) {
-        if (valeur >= 1 && valeur <= 13)
+        if (valeurEstValide(valeur) == true)
             this.valeur = valeur;
         else
             throw new IllegalArgumentException();
@@ -58,8 +69,23 @@ public class Carteold {
 
     @Override
     public String toString() {
-        return (valeur + " de " + getCouleur() + " (" + getCharCarte() + ")");
-    }
-}
+        String retour;
 
-*/
+        retour = this.valeur + " de " + this.couleur + " (" + getCharCarte() + ")";
+        return retour;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Carte carte = (Carte) o;
+        return valeur == carte.valeur && indiceCouleur == carte.indiceCouleur && Objects.equals(couleur, carte.couleur);
+    }
+
+    public static void main(String[] args) {
+
+    }
+
+
+}

@@ -1,3 +1,5 @@
+import paquet.Util;
+
 public class Testeur {
 
     public Testeur() {

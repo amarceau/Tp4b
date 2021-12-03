@@ -1,3 +1,10 @@
+package paquet;/*
+420-201 – TP4b
+Groupe : 2 – mardi & jeudi
+Nom : Marceau
+Prénom : Jérémy
+DA : 2140653
+ */
 import java.util.Random;
 import java.util.Scanner;
 
@@ -185,28 +192,7 @@ public class Util {
         return tS;
     }
 
-    public static int getNombreAleatoireEntreBorne(int min, int max) {
-        if (min >= max) {
-            throw new IllegalArgumentException("max doit être plus grand que min");
-        }
 
-        Random r = new Random(); //Instaciation de la classe Random
-        return r.nextInt((max - min) + 1) + min;
-    }
-
-    public static int[][] creerTableau2DAleatoire(int nL, int nC, int min, int max) {
-        int tS[][];
-
-        tS = new int[nL][nC];
-
-        for (int x = 0; x < nL; x++) {
-            for (int y = 0; y < nC; y++) {
-                tS[x][y] = getNombreAleatoireEntreBorne(min, max);
-            }
-        }
-
-        return tS;
-    }
 
     //F7
     public static boolean estRayonValide(double rayon) {

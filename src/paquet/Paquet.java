@@ -1,3 +1,12 @@
+package paquet;/*
+420-201 – TP4b
+Groupe : 2 – mardi & jeudi
+Nom : Marceau
+Prénom : Jérémy
+DA : 2140653
+ */
+import paquet.Carte;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,9 +17,6 @@ public class Paquet {
 
     private int cartesRestantes;
 
-    public Paquet() {
-
-    }
 
     public Paquet(boolean melange) {
 
@@ -25,9 +31,9 @@ public class Paquet {
 
     public boolean estVide() {
         if (paquet.isEmpty())
-            return false;
-        else
             return true;
+        else
+            return false;
     }
 
     private void melanger(){
@@ -54,8 +60,6 @@ public class Paquet {
         if (cartesRestantes == 0)
             return null;
 
-        else if (cartesRestantes > 1)
-            indice = Util.getNombreAleatoireEntreBorne(0, cartesRestantes - 1);
         else
             indice = 0;
 
@@ -71,8 +75,8 @@ public class Paquet {
     private void remplirPaquet() {
         paquet = new ArrayList<Carte>();
 
-        for (int x = 1; x <= 13; x++) {
-            for (int y = 1; y <= 4; y++) {
+        for (int y = 1; y <= 4; y++) {
+            for (int x = 1; x <= 13; x++) {
                 carte = new Carte(x, Carte.COULEURS_VALIDES[y-1]);
                 paquet.add(carte);
             }
