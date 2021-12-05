@@ -18,7 +18,7 @@ public class Partie21 {
         if (debuterPartie()) {
             if (faireJouerLeJoueur()) {
                 if (!this.jeuJoueur.main21Gagnante())
-                    System.out.println("Vous dépassez 21 et le banquier gagne!");
+                    System.out.println("Le banquier gagne!");
                 else
                     faireJouerLeBanquier();
             } else
@@ -29,11 +29,13 @@ public class Partie21 {
     }
 
     public void afficherJeuJoueur() {
-
+        System.out.println("Jeu du joueur");
+        System.out.println(jeuJoueur.toString());
     }
 
     public void afficherJeuBanquier() {
-
+        System.out.println("Jeu du banquier");
+        System.out.println(jeuBanquier.toString());
     }
 
     private boolean debuterPartie() {
@@ -42,26 +44,31 @@ public class Partie21 {
         this.jeuBanquier = new Main21(this.paquet, 2);
 
         if (this.jeuJoueur.getValeurMainDe21() == 21) {
-            if (this.jeuBanquier.getValeurMainDe21() == 21)
-                System.out.println("Le banquier et vous débutez avec 21 et gagnez tous les deux la partie.");
-            else
-                System.out.println("Vous débutez avec 21 et gagnez la partie.");
+            if (this.jeuBanquier.getValeurMainDe21() == 21) {
+                afficherJeuBanquier();
+                System.out.println("Le banquier et vous gagnez tous les deux la partie.");
+            }
+            else {
+                afficherJeuBanquier();
+                System.out.println("Vous gagnez la partie.");
+            }
 
             return false;
         } else if (this.jeuBanquier.getValeurMainDe21() == 21) {
-            System.out.println("Le banquier débute avec 21 et gagne la partie.");
+            afficherJeuBanquier();
+            System.out.println("Le banquier gagne la partie.");
             return false;
         }
 
         if (this.jeuJoueur.getValeurMainDe21() > 21) {
-            System.out.println("Vous débutez avec plus de 21 et le banquier gagne la partie.");
+            afficherJeuBanquier();
+            System.out.println("Le banquier gagne la partie.");
             return false;
         } else if (this.jeuJoueur.getValeurMainDe21() > 21) {
-            System.out.println("Le banquier débute avec plus de 21 et vous gagnez la partie.");
+            afficherJeuJoueur();
+            System.out.println("Vous gagnez la partie.");
             return false;
         }
-
-        System.out.println("Vous débutez avec " + this.jeuJoueur.getValeurMainDe21());
 
         return true;
     }
@@ -71,6 +78,8 @@ public class Partie21 {
 
         do {
             do {
+                afficherJeuJoueur();
+
                 reponse = Util.lireString("(C)onserver son jeu ou (d)emander une carte ?");
 
                 if (!(reponse.toLowerCase().equals("c") || reponse.toLowerCase().equals("d")))
@@ -80,7 +89,7 @@ public class Partie21 {
 
             if (reponse.toLowerCase().equals("d")) {
                 this.jeuJoueur.pigerAu21();
-                System.out.println("Vous avez demandé une carte et avez maintenant " + this.jeuJoueur.getValeurMainDe21());
+                afficherJeuJoueur();
             } else
                 return false;
 
@@ -92,19 +101,19 @@ public class Partie21 {
     private void faireJouerLeBanquier() {
         boolean estGagnantOuPerdant = false;
 
-        System.out.println("Le banquier débute avec " + this.jeuBanquier.getValeurMainDe21());
+        afficherJeuBanquier();
 
         do {
             if (this.jeuBanquier.getValeurMainDe21() > 21) {
-                System.out.println("Le banquier a dépassé 21 et vous gagnez la partie.");
-
+                System.out.println("le joueur gagne");
                 estGagnantOuPerdant = true;
             } else if (this.jeuBanquier.getValeurMainDe21() > this.jeuJoueur.getValeurMainDe21()) {
-                System.out.println("Le banquier a une main plus élevé que vous et gagne la partie.");
+                System.out.println("Le banquier a une main plus élevée que la vôtre et gagne la partie.");
                 estGagnantOuPerdant = true;
             } else {
                 this.jeuBanquier.pigerAu21();
-                System.out.println("Le banquier pige une carte et a maintenant " + this.jeuBanquier.getValeurMainDe21());
+                System.out.println("Le banquier demande une carte");
+                afficherJeuBanquier();
             }
         } while (!estGagnantOuPerdant);
     }

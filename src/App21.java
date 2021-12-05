@@ -13,7 +13,7 @@ public class App21 {
             p = new Partie21();
 
             do {
-                reponse = Util.lireString("Voulez-vous recommencer une partie ? (o/n)");
+                reponse = Util.lireString("Voulez-vous jouer une autre partie ? (o/n)");
 
                 if (!(reponse.toLowerCase().equals("o") || reponse.toLowerCase().equals("n")))
                     System.out.println("Entrez un choix valide (on)");
