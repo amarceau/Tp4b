@@ -2,38 +2,37 @@ import paquet.Paquet;
 import utilitaire.Util;
 
 public class Partie21 {
-    Paquet paquet;
-    Main21 jeuBanquier;
-    Main21 jeuJoueur;
+    private Paquet paquet;
+    private Main21 jeuBanquier;
+    private Main21 jeuJoueur;
 
-    boolean rejouerPartie;
+    private boolean rejouerPartie;
 
     public Partie21() {
         jouer();
     }
 
     public void jouer() {
-        String reponse = "o";
         rejouerPartie = false;
 
-        do {
-            if (debuterPartie()) {
-                if (faireJouerLeJoueur()) {
-                    if (!this.jeuJoueur.main21Gagnante())
-                        System.out.println("Vous dépassé 21 et le banquier gagne!");
-                    else
-                        faireJouerLeBanquier();
-                } else
+        if (debuterPartie()) {
+            if (faireJouerLeJoueur()) {
+                if (!this.jeuJoueur.main21Gagnante())
+                    System.out.println("Vous dépassez 21 et le banquier gagne!");
+                else
                     faireJouerLeBanquier();
-            }
+            } else
+                faireJouerLeBanquier();
+        }
 
-            System.out.println("Partie terminée.");
-            reponse = Util.lireString("Voulez-vous recommencer une partie ? (o/n)");
-            rejouerPartie = (reponse.equals("o") ? true : false);
+        System.out.println("Partie terminée.");
+    }
 
-        } while (rejouerPartie == true);
+    public void afficherJeuJoueur() {
 
-        System.out.println("Au revoir.");
+    }
+
+    public void afficherJeuBanquier() {
 
     }
 
@@ -71,14 +70,18 @@ public class Partie21 {
         String reponse;
 
         do {
-            //System.out.println("Vous avez " + this.jeuJoueur.getValeurMainDe21());
-            reponse = Util.lireString("Voulez-vous piger une carte ? (o/n)");
+            do {
+                reponse = Util.lireString("(C)onserver son jeu ou (d)emander une carte ?");
 
-            if (reponse.equals("o")) {
+                if (!(reponse.toLowerCase().equals("c") || reponse.toLowerCase().equals("d")))
+                    System.out.println("Entrez un choix valide (cd)");
+
+            } while (!(reponse.toLowerCase().equals("c") || reponse.toLowerCase().equals("d")));
+
+            if (reponse.toLowerCase().equals("d")) {
                 this.jeuJoueur.pigerAu21();
-                System.out.println("Vous pigez et avez maintenant " + this.jeuJoueur.getValeurMainDe21());
-            }
-            else
+                System.out.println("Vous avez demandé une carte et avez maintenant " + this.jeuJoueur.getValeurMainDe21());
+            } else
                 return false;
 
         } while (!this.jeuJoueur.main21GagnanteOuPerdante());
