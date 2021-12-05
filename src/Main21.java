@@ -10,7 +10,7 @@ public class Main21 {
     public Main21(Paquet paquet, int nbCarte) {
         this.paquet = paquet;
 
-        mainDe21 = new ArrayList<Carte>();
+        this.mainDe21 = new ArrayList<Carte>();
 
         for (int x = 0; x < nbCarte; x++)
            pigerAu21();
@@ -32,12 +32,12 @@ public class Main21 {
         int carteValeur;
         carteValeur = carte.getValeur();
 
-        if(carteValeur > 1 && carteValeur < 10)
-            return carteValeur;
-        else if (carteValeur == 1)
+        if (carteValeur == 1)
             return 11;
-        else
+        else if (carteValeur > 10)
             return 10;
+        else
+            return carteValeur;
     }
 
     public int getValeurMainDe21() {
@@ -61,10 +61,16 @@ public class Main21 {
     }
 
     public boolean main21GagnanteOuPerdante() {
-        if(main21Gagnante() || main21Perdante())
-            return true;
-        else
-            return false;
+        return (main21Gagnante() || main21Perdante() ? true : false);
+    }
+
+    public String getStrMain() {
+        String retour = "";
+
+        for (int x = 0; x < mainDe21.size(); x++)
+            retour += +(x + 1) + " - " + mainDe21.get(x).getValeur() + " de " + mainDe21.get(x).getCouleur() + " (" + mainDe21.get(x).getCharCarte() + ")\n";
+
+        return retour;
     }
 
     @Override
@@ -72,8 +78,7 @@ public class Main21 {
         String retour = "";
         String commentaire;
 
-        for (int x = 0; x < mainDe21.size(); x++)
-            retour += + (x+1) + " - " + mainDe21.get(x).getValeur() + " de " + mainDe21.get(x).getCouleur() + " (" + mainDe21.get(x).getCharCarte()  + ")\n";
+        retour = getStrMain();
 
         if (getValeurMainDe21() <= 21)
             commentaire = (21 - getValeurMainDe21()) + " pour dépasser.";

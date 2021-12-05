@@ -1,4 +1,4 @@
-package paquet;/*
+package utilitaire;/*
 420-201 – TP4b
 Groupe : 2 – mardi & jeudi
 Nom : Marceau

@@ -1,5 +1,7 @@
 package paquet;
 
+import utilitaire.Util;
+
 import java.util.Objects;
 
 /*
@@ -80,7 +82,7 @@ public class Carte {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Carte carte = (Carte) o;
-        return valeur == carte.valeur && indiceCouleur == carte.indiceCouleur && Objects.equals(couleur, carte.couleur);
+        return this.valeur == carte.valeur && indiceCouleur == carte.indiceCouleur && Objects.equals(couleur, carte.couleur);
     }
 
     public static void main(String[] args) {
