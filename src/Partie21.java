@@ -2,15 +2,20 @@ import paquet.Paquet;
 import utilitaire.Util;
 
 public class Partie21 {
-    private final String MSG_JOUEUR_GAGNE_PARTIE = "Le joueur gagne la partie";
-    private final String MSG_BANQUIER_GAGNE_PARTIE = "Le banquier gagne la partie";
-    private final String MSG_JOUEUR_BANQUIER_GAGNENT_PARTIE = "Le joueur et le banquier gagnent la partie";
-    private final String MSG_BANQUIER_DEMANDE_CARTE = "Le banquier demande une carte";
+    private final String MSG_JOUEUR_GAGNE_PARTIE = "Vous avez gagné!";
+    private final String MSG_JOUEUR_PERDU_PARTIE = "Vous avez perdu:";
+    private final String MSG_BANQUIER_GAGNE_PARTIE = "Le banquier a gagné!";
+    private final String MSG_BANQUIER_DEMANDE_CARTE = "Le banquier pige...";
     private final String MSG_NOUVELLE_PARTIE = "Nouvelle partie";
-    private final String MSG_JEU_JOUEUR = "Jeu du joueur";
-    private final String MSG_JEU_BANQUIER = "jeu du banquier";
+    private final String MSG_JEU_JOUEUR = "Votre jeu :";
+    private final String MSG_JEU_BANQUIER = "jeu du banquier :";
     private final String QUEST_CONSERVER_DEMANDER_CARTE = "(C)onserver son jeu ou (d)emander une carte ?";
     private final String MSG_DEMANDER_CARTE_CHOIX_VALIDE = "Entrez un choix valide (cd)";
+    private final String MSG_JOUEUR_MAIN_PLUS_FAIBLE = " votre main plus faible";
+    private final String MSG_BANQUIER_DEPASSE_21 = " Le banquier a dépassé 21";
+    private final String MSG_JOUEUR_PERDU_DEPASSE_21 = "Vous avez perdu en dépassant 21 !";
+    private final String MSG_BANQUIER_PERDU_DEPASSE_21 = "Le banquier a perdu en dépassant 21 !";
+    private final String MSG_JOUEUR_DEPASSE_21 = " vous avez dépassé 21";
     private final String CHOIX_DEMANDER_CARTE_CONSERVER = "c";
     private final String CHOIX_DEMANDER_CARTE_DEMANDER = "d";
 
@@ -27,12 +32,10 @@ public class Partie21 {
     public void jouer() {
         rejouerPartie = false;
 
-        System.out.println(MSG_NOUVELLE_PARTIE);
-
         if (debuterPartie()) {
             if (faireJouerLeJoueur()) {
                 if (!this.jeuJoueur.main21Gagnante())
-                    System.out.println(MSG_BANQUIER_GAGNE_PARTIE);
+                    System.out.println(MSG_JOUEUR_PERDU_PARTIE + MSG_JOUEUR_DEPASSE_21);
                 else
                     faireJouerLeBanquier();
             } else
@@ -55,26 +58,35 @@ public class Partie21 {
         this.jeuJoueur = new Main21(this.paquet, 2);
         this.jeuBanquier = new Main21(this.paquet, 2);
 
+        afficherJeuBanquier();
+
         if (this.jeuJoueur.getValeurMainDe21() == 21) {
+            afficherJeuJoueur();
             if (this.jeuBanquier.getValeurMainDe21() == 21) {
-                afficherJeuBanquier();
-                System.out.println(MSG_JOUEUR_BANQUIER_GAGNENT_PARTIE);
+                System.out.println(MSG_JOUEUR_GAGNE_PARTIE);
+                System.out.println(MSG_BANQUIER_GAGNE_PARTIE);
             } else {
-                afficherJeuBanquier();
                 System.out.println(MSG_JOUEUR_GAGNE_PARTIE);
             }
 
             return false;
-        } else if (this.jeuBanquier.getValeurMainDe21() == 21) {
-            afficherJeuBanquier();
-            System.out.println(MSG_BANQUIER_GAGNE_PARTIE);
-            return false;
-        }
 
-        if (this.jeuJoueur.getValeurMainDe21() > 21) {
-            afficherJeuBanquier();
+        } else if (this.jeuBanquier.getValeurMainDe21() == 21) {
+            afficherJeuJoueur();
             System.out.println(MSG_BANQUIER_GAGNE_PARTIE);
             return false;
+
+        } else if (this.jeuJoueur.getValeurMainDe21() > 21 && this.jeuBanquier.getValeurMainDe21() > 21) {
+            afficherJeuJoueur();
+            System.out.println(MSG_JOUEUR_PERDU_DEPASSE_21);
+            System.out.println(MSG_BANQUIER_PERDU_DEPASSE_21);
+            return false;
+
+        } else if (this.jeuJoueur.getValeurMainDe21() > 21) {
+            afficherJeuJoueur();
+            System.out.println(MSG_BANQUIER_GAGNE_PARTIE);
+            return false;
+
         } else if (this.jeuJoueur.getValeurMainDe21() > 21) {
             afficherJeuJoueur();
             System.out.println(MSG_JOUEUR_GAGNE_PARTIE);
@@ -112,14 +124,12 @@ public class Partie21 {
     private void faireJouerLeBanquier() {
         boolean estGagnantOuPerdant = false;
 
-        afficherJeuBanquier();
-
         do {
             if (this.jeuBanquier.getValeurMainDe21() > 21) {
-                System.out.println(MSG_JOUEUR_GAGNE_PARTIE);
+                System.out.println(MSG_JOUEUR_GAGNE_PARTIE + " Le banquier a dépassé 21");
                 estGagnantOuPerdant = true;
             } else if (this.jeuBanquier.getValeurMainDe21() > this.jeuJoueur.getValeurMainDe21()) {
-                System.out.println(MSG_BANQUIER_GAGNE_PARTIE);
+                System.out.println(MSG_JOUEUR_PERDU_PARTIE + " votre main plus faible");
                 estGagnantOuPerdant = true;
             } else {
                 this.jeuBanquier.pigerAu21();
