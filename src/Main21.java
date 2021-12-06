@@ -13,7 +13,7 @@ public class Main21 {
         this.mainDe21 = new ArrayList<Carte>();
 
         for (int x = 0; x < nbCarte; x++)
-           pigerAu21();
+            pigerAu21();
 
     }
 

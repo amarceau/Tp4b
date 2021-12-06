@@ -15,17 +15,17 @@ public class Partie21 {
     public void jouer() {
         rejouerPartie = false;
 
+        System.out.println("Nouvelle partie");
+
         if (debuterPartie()) {
             if (faireJouerLeJoueur()) {
                 if (!this.jeuJoueur.main21Gagnante())
-                    System.out.println("Le banquier gagne!");
+                    System.out.println("Le banquier gagne la partie");
                 else
                     faireJouerLeBanquier();
             } else
                 faireJouerLeBanquier();
         }
-
-        System.out.println("Partie terminée.");
     }
 
     public void afficherJeuJoueur() {
@@ -46,27 +46,26 @@ public class Partie21 {
         if (this.jeuJoueur.getValeurMainDe21() == 21) {
             if (this.jeuBanquier.getValeurMainDe21() == 21) {
                 afficherJeuBanquier();
-                System.out.println("Le banquier et vous gagnez tous les deux la partie.");
-            }
-            else {
+                System.out.println("Le banquier et le jouer gagnent tous les deux la partie");
+            } else {
                 afficherJeuBanquier();
-                System.out.println("Vous gagnez la partie.");
+                System.out.println("Le joueur gagne la partie");
             }
 
             return false;
         } else if (this.jeuBanquier.getValeurMainDe21() == 21) {
             afficherJeuBanquier();
-            System.out.println("Le banquier gagne la partie.");
+            System.out.println("Le banquier gagne la partie");
             return false;
         }
 
         if (this.jeuJoueur.getValeurMainDe21() > 21) {
             afficherJeuBanquier();
-            System.out.println("Le banquier gagne la partie.");
+            System.out.println("Le banquier gagne la partie");
             return false;
         } else if (this.jeuJoueur.getValeurMainDe21() > 21) {
             afficherJeuJoueur();
-            System.out.println("Vous gagnez la partie.");
+            System.out.println("Le joueur gagne la partie");
             return false;
         }
 
@@ -76,10 +75,10 @@ public class Partie21 {
     private boolean faireJouerLeJoueur() {
         String reponse;
 
+        afficherJeuJoueur();
+
         do {
             do {
-                afficherJeuJoueur();
-
                 reponse = Util.lireString("(C)onserver son jeu ou (d)emander une carte ?");
 
                 if (!(reponse.toLowerCase().equals("c") || reponse.toLowerCase().equals("d")))
@@ -90,7 +89,8 @@ public class Partie21 {
             if (reponse.toLowerCase().equals("d")) {
                 this.jeuJoueur.pigerAu21();
                 afficherJeuJoueur();
-            } else
+            }
+            else
                 return false;
 
         } while (!this.jeuJoueur.main21GagnanteOuPerdante());
@@ -105,7 +105,7 @@ public class Partie21 {
 
         do {
             if (this.jeuBanquier.getValeurMainDe21() > 21) {
-                System.out.println("le joueur gagne");
+                System.out.println("le joueur gagne la partie");
                 estGagnantOuPerdant = true;
             } else if (this.jeuBanquier.getValeurMainDe21() > this.jeuJoueur.getValeurMainDe21()) {
                 System.out.println("Le banquier a une main plus élevée que la vôtre et gagne la partie.");

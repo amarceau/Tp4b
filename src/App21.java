@@ -22,7 +22,7 @@ public class App21 {
 
             rejouerPartie = (reponse.toLowerCase().equals("o") ? true : false);
 
-        } while (rejouerPartie == true);
+        } while (rejouerPartie);
 
         System.out.println("Au revoir !");
     }
