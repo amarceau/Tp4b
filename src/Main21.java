@@ -9,19 +9,11 @@ public class Main21 {
 
     public Main21(Paquet paquet, int nbCarte) {
         this.paquet = paquet;
-
         this.mainDe21 = new ArrayList<Carte>();
 
-        for (int x = 0; x < nbCarte; x++)
+        for (int x = 1; x <= nbCarte; x++)
             pigerAu21();
 
-    }
-
-    public void pigerAu21() {
-        Carte carte;
-        carte = paquet.piger();
-
-        mainDe21.add(carte);
     }
 
     public int getNbCartesDsMain() {
@@ -56,21 +48,19 @@ public class Main21 {
         return (getValeurMainDe21() == 21 ? true : false);
     }
 
-    public boolean main21Perdante() {
-        return (getValeurMainDe21() > 21 ? true : false);
-    }
-
     public boolean main21GagnanteOuPerdante() {
         return (main21Gagnante() || main21Perdante() ? true : false);
     }
 
-    public String getStrMain() {
-        String retour = "";
+    public boolean main21Perdante() {
+        return (getValeurMainDe21() > 21 ? true : false);
+    }
 
-        for (int x = 0; x < mainDe21.size(); x++)
-            retour += +(x + 1) + " - " + mainDe21.get(x).getValeur() + " de " + mainDe21.get(x).getCouleur() + " (" + mainDe21.get(x).getCharCarte() + ")\n";
+    public void pigerAu21() {
+        Carte carte;
+        carte = paquet.piger();
 
-        return retour;
+        mainDe21.add(carte);
     }
 
     @Override
@@ -78,7 +68,7 @@ public class Main21 {
         String retour = "";
         String commentaire;
 
-        retour = getStrMain();
+        retour = getMainDe21();
 
         if (getValeurMainDe21() <= 21)
             commentaire = (21 - getValeurMainDe21()) + " pour dépasser.";
@@ -86,6 +76,15 @@ public class Main21 {
             commentaire = " 21 est dépassé";
 
         retour += "valeur du jeu 21 : " + getValeurMainDe21() + " -> " + commentaire + "\n";
+
+        return retour;
+    }
+
+    private String getMainDe21() {
+        String retour = "";
+
+        for (int x = 0; x < mainDe21.size(); x++)
+            retour += +(x + 1) + " - " + mainDe21.get(x).getValeur() + " de " + mainDe21.get(x).getCouleur() + " (" + mainDe21.get(x).getCharCarte() + ")\n";
 
         return retour;
     }

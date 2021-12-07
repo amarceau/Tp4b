@@ -8,11 +8,10 @@ public class App21 {
     private final String MSG_AU_REVOIR = "Au revoir !";
 
     private Partie21 p;
-    private boolean rejouerPartie;
 
     public App21() {
         String reponse = CHOIX_NOUVELLE_PARTIE_OUI;
-        rejouerPartie = false;
+        boolean rejouerPartie = false;
 
         do {
             p = new Partie21();

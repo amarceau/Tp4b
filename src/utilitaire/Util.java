@@ -5,9 +5,17 @@ Nom : Marceau
 Prénom : Jérémy
 DA : 2140653
  */
+
 import java.util.Random;
 import java.util.Scanner;
 
+
+/**
+ * Classe de méthodes utilitaires
+ *
+ * @author Jérémy Marceau
+ * @version 0.1
+ */
 public class Util {
 
     //F5
@@ -64,12 +72,12 @@ public class Util {
         }
     }
 
-    public static int[] sortirLesNombresPositifs (int t1[]) {
+    public static int[] sortirLesNombresPositifs(int t1[]) {
         int t2[];
         int j;
         int compteurPositif;
 
-        j=0;
+        j = 0;
         compteurPositif = 0;
 
         for (int i = 0; i < t1.length; i++) {
@@ -191,7 +199,6 @@ public class Util {
 
         return tS;
     }
-
 
 
     //F7

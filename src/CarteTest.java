@@ -1,7 +1,9 @@
-package paquet;//420-126 – tp4 - Jeu de carte
+//420-126 – tp4 - Jeu de carte
 //Nom : Aubé
 //Prénom : Robert
 
+
+import paquet.Carte;
 
 import java.util.Arrays;
 
@@ -22,7 +24,7 @@ public class CarteTest {
         tester_MutateursEtAccesseur_couleur();
         tester_MutateursEtAccesseur_valeur();
         tester_toString();
-        tester_equals(); //Pas à faire pour l'instant
+//        tester_equals(); Pas à faire pour l'instant
     }
 
     private void tester_constantesDeClasse() {

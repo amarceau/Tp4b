@@ -1,6 +1,9 @@
-package paquet;//420-201 – tp4 - Jeu de carte
+//420-201 – tp4 - Jeu de carte
 //Nom : Aubé
 //Prénom : Robert
+
+import paquet.Carte;
+import paquet.Paquet;
 
 /**
  * Classe de test de la classe Paquet
